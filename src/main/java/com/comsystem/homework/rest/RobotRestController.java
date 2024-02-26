@@ -1,14 +1,11 @@
 package com.comsystem.homework.rest;
 
 import com.comsystem.homework.model.RobotPlan;
+import com.comsystem.homework.robot.RobotOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponseException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import com.comsystem.homework.robot.RobotOperations;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/api/v1/robot/operation")
@@ -19,8 +16,16 @@ public final class RobotRestController {
      */
     @PostMapping("/excavation")
     public ResponseEntity<RobotPlan> excavateStones(@RequestParam Integer numberOfDays) {
-        // TODO
-        throw new ErrorResponseException(HttpStatus.I_AM_A_TEAPOT);
+
+        if (numberOfDays < 0) {
+            throw new ErrorResponseException(HttpStatus.I_AM_A_TEAPOT);
+        }
+        RobotOperations excavate = new RobotOperations();
+
+        RobotPlan robotPlan = excavate.excavateStonesForDays(numberOfDays);
+
+        return new ResponseEntity<>(robotPlan, HttpStatus.OK);
+
     }
 
     /**
@@ -28,8 +33,13 @@ public final class RobotRestController {
      */
     @PostMapping("/approximation")
     public ResponseEntity<RobotPlan> approximateDays(@RequestParam Integer numberOfStones) {
-        // TODO
-        throw new ErrorResponseException(HttpStatus.I_AM_A_TEAPOT);
-    }
 
+        if (numberOfStones < 0) {
+            throw new ErrorResponseException(HttpStatus.I_AM_A_TEAPOT);
+        }
+        RobotOperations days = new RobotOperations();
+        RobotPlan robotPlan = days.daysRequiredToCollectStones(numberOfStones);
+
+        return new ResponseEntity<>(robotPlan, HttpStatus.OK);
+    }
 }

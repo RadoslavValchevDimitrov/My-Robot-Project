@@ -13,3 +13,5 @@ public record RobotPlan(int numberOfDays,
                         int numberOfStones,
                         List<RobotAction> robotActions) {
 }
+
+
