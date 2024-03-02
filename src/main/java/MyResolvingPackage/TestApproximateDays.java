@@ -14,7 +14,7 @@ public class TestApproximateDays {
         fillTheRobotPlan(9);
     }
 
-    // We have to clone the robots until they reach a value equal to or greater than that of the stones
+    // We have to clone the robots until they reach a value equal to or greater than that of the stones //
 
     public static void fillTheRobotPlan(int numberOfDays){
         RobotOperations excavate = new RobotOperations();
