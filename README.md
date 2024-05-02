@@ -1,23 +1,18 @@
-# Робот на Марс
+#Robot on Mars
 
-В тази задача по програмиране се интересуваме от имплементацията на робот, който събира камъни на Марс. Роботът има само
-2 функции на разположение:
+In this project I have provided the implementation of a robot that collects rocks on Mars. The robot has only
+2 functions available:
 
-* За един ден да събере един камък
-* За един ден да се клонира
+* For one day to collect one stone
+* In a day to clone
 
-Тъй като и двете операции отнемат цял ден, роботът не може да се клонира и да събира камъни в един и същи ден.
+Since both operations take a full day, the robot cannot clone itself and collect stones in the same day.
 
-Довършете имплементацията на двата класа [RobotOperations](/src/main/java/com/comsystem/homework/robot/RobotOperations.java)
-и [RobotRestController](/src/main/java/com/comsystem/homework/rest/RobotRestController.java). Там ще намерите и 
-допълнителни ориентировъчни коментари.
-Моля, имплементирайте и два unit теста, които да доказват коректността на двата метода в
-[RobotOperations](/src/main/java/com/comsystem/homework/robot/RobotOperations.java).
+In RobotOperations class  I have implemented an algorithm that converts a number of days into an action plan 
+and algorithm that is the inverse of previous and converts a number of stones into an action plan.
 
-Позволено е да използвате всякакви външни библиотеки, които могат да се намерят в
-[Maven Central Repository](https://mvnrepository.com). Не е позволено да се променят сигнатурите (method signature) на 
-вече дефинираните методи.
+Providing  two unit tests to prove the correctness of the two methods in RobotOpearations.
 
-Приятно кодене!
+In the Rest package I have implemented two methods that exposes the functionality of RobotOpearations.
 
 
