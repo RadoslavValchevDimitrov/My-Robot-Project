@@ -29,7 +29,7 @@ public final class RobotRestController {
 
     }
 
-    public int generateDaysOrStones (){
+    public static int generateDaysOrStones (){
         Random r = new Random();
         return r.nextInt(365);
     }

@@ -24,7 +24,7 @@ public class RobotOperations {
      * instead it clones itself to the days without the last one,
      * with the last day being the mandatory day for all cloned robots to mine
      */
-    public RobotPlan excavateStonesForDays(int days) {
+    public static RobotPlan excavateStonesForDays(int days) {
         List<RobotAction> robotActionList = new ArrayList<>();
         int numberOfExcavatedStones = 0;
         int clonedRobots = 0;
@@ -71,7 +71,7 @@ public class RobotOperations {
      * we have to clone the robots until they reach a value equal to or greater than the stones,
      * then we need another day to mine them
      */
-    public  RobotPlan daysRequiredToCollectStones(int numberOfStones) {
+    public static  RobotPlan daysRequiredToCollectStones(long numberOfStones) {
 
         List<RobotAction> robotActionList = new ArrayList<>();
 
@@ -98,8 +98,7 @@ public class RobotOperations {
             robotActionList.add(robotActionClone);
 
         }
-        RobotPlan robotPlan = new RobotPlan(daysToCollect, numberOfStones, robotActionList);
-        return robotPlan;
+        return new RobotPlan(daysToCollect, numberOfStones, robotActionList);
     }
 }
 

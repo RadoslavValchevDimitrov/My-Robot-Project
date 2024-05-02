@@ -10,7 +10,7 @@ import java.util.List;
  *                     the robot dug, cloned himself and dug again
  */
 public record RobotPlan(int numberOfDays,
-                        int numberOfStones,
+                        long numberOfStones,
                         List<RobotAction> robotActions) {
 }
 

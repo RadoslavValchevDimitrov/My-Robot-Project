@@ -2,38 +2,57 @@ package com.comsystem.homework.robot;
 
 import com.comsystem.homework.model.RobotAction;
 import com.comsystem.homework.model.RobotPlan;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RobotOperationsTest {
+    RobotOperations operations;
+    List<RobotAction> list;
 
-    @Test
-    void excavateStonesForDays() {
-        RobotOperations actualOperation = new RobotOperations();
-        RobotPlan actualPlan = actualOperation.excavateStonesForDays(6);
-        List<RobotAction> actionsList = new ArrayList<>();
-        for(int i =0; i < 5 ;i++){
-            actionsList.add(RobotAction.CLONE);
-        }
-        actionsList.add(RobotAction.DIG);
-        RobotPlan testPlan = new RobotPlan(6,32,actionsList);
-        assertEquals(actualPlan,testPlan);
+    @BeforeEach
+    public void setUpOperationsAndList() {
+        operations = new RobotOperations();
+        list = new ArrayList<>();
     }
 
-    @Test
-    void daysRequiredToCollectStones() {
-        RobotOperations operation = new RobotOperations();
-        RobotPlan actualPlan = operation.daysRequiredToCollectStones(256);
-        List<RobotAction> actionList = new ArrayList<>();
-        for(int i =0;i < 8;i++){
-            actionList.add(RobotAction.CLONE);
+    static Stream<Arguments> daysAndStonesProvider() {
+        return Stream.of(Arguments.arguments(6, 32)
+                , Arguments.arguments(3, 4));
+    }
+
+    @ParameterizedTest
+    @MethodSource("daysAndStonesProvider")
+    void excavateStonesForDays(int days, long stones) {
+
+        RobotPlan actualPlan = RobotOperations.excavateStonesForDays(days);
+
+        for (int i = 0; i < days - 1; i++) {
+            list.add(RobotAction.CLONE);
         }
-        actionList.add(RobotAction.DIG);
-        RobotPlan testPlan = new RobotPlan(9,256,actionList);
-        assertEquals(actualPlan,testPlan);
+        list.add(RobotAction.DIG);
+        RobotPlan testPlan = new RobotPlan(days, stones, list);
+        assertEquals(actualPlan, testPlan);
+    }
+
+    @ParameterizedTest
+    @MethodSource("daysAndStonesProvider")
+    void daysRequiredToCollectStones(int days, long stones) {
+
+        RobotPlan actualPlan = RobotOperations.daysRequiredToCollectStones(stones);
+
+        for (int i = 0; i < days - 1; i++) {
+            list.add(RobotAction.CLONE);
+        }
+        list.add(RobotAction.DIG);
+        RobotPlan testPlan = new RobotPlan(days, stones, list);
+        assertEquals(actualPlan, testPlan);
     }
 }
